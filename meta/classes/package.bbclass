@@ -654,7 +654,10 @@ python fixup_perms () {
             elif gid.isdigit():
                 return int(gid)
             else:
-                return grp.getgrnam(gid).gr_gid
+                try:
+                    return grp.getgrnam(gid).gr_gid
+                except Exception:
+                   return -1
 
         # Use for debugging the entries
         def __str__(self):
