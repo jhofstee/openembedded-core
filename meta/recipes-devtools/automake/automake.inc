@@ -11,6 +11,9 @@ inherit autotools texinfo
 
 do_configure() {
 	oe_runconf
+	# We can end up patching macros, which would then mean autoreconf
+	# Cheat by saying everything is up to date.
+	touch ${S}/aclocal.m4 ${S}/Makefile.in
 }
 
 export AUTOMAKE = "${@bb.utils.which('automake', d.getVar('PATH', True))}"
