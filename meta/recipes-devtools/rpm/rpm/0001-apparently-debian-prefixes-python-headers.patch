@@ -1,0 +1,53 @@
+From b4cb7b99abdd2693622d549df4ef647c2caebeb9 Mon Sep 17 00:00:00 2001
+From: Jeroen Hofstee <jhofstee@victronenergy.com>
+Date: Sat, 5 Dec 2015 16:15:00 +0100
+Subject: [PATCH] apparently debian prefixes python headers
+
+---
+ python/rpmfts-py.c   | 2 +-
+ python/rpmmacro-py.c | 2 +-
+ python/system.h      | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/python/rpmfts-py.c b/python/rpmfts-py.c
+index c78c235..aa18df7 100644
+--- a/python/rpmfts-py.c
++++ b/python/rpmfts-py.c
+@@ -4,7 +4,7 @@
+ 
+ #include "system.h"
+ 
+-#include "structmember.h"
++#include "python2.7/structmember.h"
+ 
+ #ifdef __LCLINT__
+ #undef  PyObject_HEAD
+diff --git a/python/rpmmacro-py.c b/python/rpmmacro-py.c
+index ca3b5e4..8965afc 100644
+--- a/python/rpmmacro-py.c
++++ b/python/rpmmacro-py.c
+@@ -4,7 +4,7 @@
+ 
+ #include "system.h"
+ 
+-#include "structmember.h"
++#include "python2.7/structmember.h"
+ 
+ #include <rpmio.h>
+ #include <rpmiotypes.h>
+diff --git a/python/system.h b/python/system.h
+index de6aee8..efdd999 100644
+--- a/python/system.h
++++ b/python/system.h
+@@ -10,7 +10,7 @@
+ #endif
+ 
+ #define	uuid_t	unistd_uuid_t	/* XXX Mac OS X dares to be different. */
+-#include "Python.h"
++#include "python2.7/Python.h"
+ #undef	unistd_uuid_t		/* XXX Mac OS X dares to be different. */
+ 
+ #if PY_MAJOR_VERSION == 2 && PY_MINOR_VERSION < 4
+-- 
+1.9.1
+
