@@ -34,7 +34,7 @@ python () {
 
     tos = d.getVar("TARGET_OS", True)
     whitelist = []
-    for variant in ["", "spe", "x32", "eabi", "n32"]:
+    for variant in ["", "spe", "x32", "eabi", "eabihf", "n32"]:
         for libc in ["", "uclibc", "musl"]:
             entry = "linux"
             if variant and libc:
@@ -45,7 +45,7 @@ python () {
                 entry = entry + "-" + libc
             whitelist.append(entry)
     if tos not in whitelist:
-        bb.fatal("Building cross-candian for an unknown TARGET_SYS (%s), please update cross-canadian.bbclass" % d.getVar("TARGET_SYS", True))
+         bb.fatal("Building cross-candian for an unknown TARGET_SYS (%s), please update cross-canadian.bbclass" % d.getVar("TARGET_SYS", True))
 
     for n in ["PROVIDES", "DEPENDS"]:
         d.setVar(n, d.getVar(n, True))
