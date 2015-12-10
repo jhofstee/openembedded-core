@@ -319,7 +319,7 @@ python () {
     elif darch == "x86_64":
          d.setVar('DPKG_ARCH', 'amd64')
     elif darch == "arm":
-         d.setVar('DPKG_ARCH', 'armel')
+         d.setVar('DPKG_ARCH', 'armhf')
 }
 
 python do_package_write_deb () {
