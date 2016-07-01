@@ -246,7 +246,8 @@ class DpkgIndexer(Indexer):
         f.write('Architectures: armhf\n')
         f.write('Components: main\n')
         f.write('Description: OE packages for ' + distro_version  + '\n')
-        f.write('SignWith: yes\n')
+        if self.d.getVar("PACKAGE_FEED_SIGN", True) == "1":
+            f.write('SignWith: yes\n')
         f.write('Pull: ' + distro_version  + '\n')
         f.close()
 
@@ -257,6 +258,8 @@ class DpkgIndexer(Indexer):
                     cmd = "reprepro -b " + reprepro_base_dir + " -v includedeb " + distro_version + " " + debfile
                     bb.note(cmd)
                     retvalue = os.system(cmd)
+                    if retvalue != 0:
+                        bb.fatal(cmd + " failed (is reprepro installed?) " + str(retvalue))
 
     def write_index_orig(self):
         self.apt_conf_dir = os.path.join(self.d.expand("${APTCONF_TARGET}"),
