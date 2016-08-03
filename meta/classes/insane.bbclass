@@ -130,6 +130,9 @@ def package_qa_get_machine_dict():
             "uclinux-uclibc" : {
                         "bfin":       ( 106,     0,    0,          True,         32),
                       }, 
+            "arm-linux-gnueabihf" : {
+                        "arm" :       (40,     0,    0,          True,          32),
+                      },
             "linux-gnueabihf" : {
                         "arm" :       (40,     0,    0,          True,          32),
                         "armeb" :     (40,     0,    0,          False,         32),
